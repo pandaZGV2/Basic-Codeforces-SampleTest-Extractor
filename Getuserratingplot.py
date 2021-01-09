@@ -47,7 +47,9 @@ print(len(y))
 #
 fig = plt.figure()
 plt.plot(x, y, 'c-o', markerfacecolor='r')
-bars = plt.bar(x, y, color=(0.2, 0.4, 0.6, 0))
+# plt.xlim([-3, x[-1]])
+
+bars = plt.bar(x, y, color=(0.2, 0.4, 0.6, 0.1))
 print(len(bars))
 plt.grid(True)
 contest = dict()
@@ -69,11 +71,9 @@ def readelements():
         # contests['change'].append(contest['newRating']-contest['oldRating'])
 readelements()
 yax = [1200, 1400, 1600, 1900, 2100, 2300, 2400, 2600, 3000, 4000]
-# print(len(xax),len(yax))
-# plt.xticks(np.arange(len(xax),xax))
+
 ax = plt.subplot()
 ax.set_xticklabels([])
-#plt.set_ylim(np.arange(len(yax)), yax)
 
 annot = ax.annotate("", xy=(0, 0), xytext=(-20, 20), textcoords="offset points",
                     bbox=dict(boxstyle="round", fc="red", ec="b", lw=2),
