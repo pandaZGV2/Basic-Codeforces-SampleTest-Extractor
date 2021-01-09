@@ -54,7 +54,6 @@ contest = dict()
 
 
 def readelements():
-    global i
     i = 0
     global contests, jsondata
     for bar in bars:
@@ -69,12 +68,12 @@ def readelements():
         # contests['rank'].append(contest['rank'])
         # contests['change'].append(contest['newRating']-contest['oldRating'])
 readelements()
-print(contests)
 yax = [1200, 1400, 1600, 1900, 2100, 2300, 2400, 2600, 3000, 4000]
 # print(len(xax),len(yax))
 # plt.xticks(np.arange(len(xax),xax))
 ax = plt.subplot()
-# plt.yticks(np.arange(len(yax)), yax)
+ax.set_xticklabels([])
+#plt.set_ylim(np.arange(len(yax)), yax)
 
 annot = ax.annotate("", xy=(0, 0), xytext=(-20, 20), textcoords="offset points",
                     bbox=dict(boxstyle="round", fc="red", ec="b", lw=2),
@@ -105,7 +104,6 @@ def hover(event):
                 update_annot(bar)
                 annot.set_visible(True)
                 fig.canvas.draw_idle()
-                i = i+1
                 return
     if vis:
         annot.set_visible(False)
