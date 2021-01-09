@@ -15,10 +15,10 @@ if(len(username) < 1):
 params = {'handle': username}
 details = urllib.parse.urlencode(params)
 url = 'https://codeforces.com/api/user.rating?'
-finalurl = url+details
-encodeddata = urllib.request.urlopen(finalurl)
-data = encodeddata.read().decode()
 try:
+    finalurl = url+details
+    encodeddata = urllib.request.urlopen(finalurl)
+    data = encodeddata.read().decode()
     jsondata = json.loads(data)
 except:
     print("Unable to read")
