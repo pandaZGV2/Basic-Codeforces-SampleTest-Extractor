@@ -11,3 +11,4 @@ $ ./RCPP.sh 1469A.cpp
 * Python3
 * BeautifulSoup
 * lxml
+* numpy
