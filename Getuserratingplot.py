@@ -6,8 +6,9 @@ import urllib.error
 import matplotlib.pyplot as plt
 import math
 import numpy as np
+import warnings
 
-
+warnings. filterwarnings('ignore')
 username = input("Enter the handle of the user: ")
 if(len(username) < 1):
     print("Enter a username!")
@@ -56,17 +57,19 @@ for contest in jsondata['result']:
 
 fig = plt.figure()
 plt.title(username+" - Rating plot")
-plt.plot(x, y, 'r-o', markerfacecolor='b', markersize="7", linewidth="2")
+plt.plot(x, y, color="black", linewidth="2",
+         markerfacecolor='white', markersize="7", marker="o")
 plt.ylim([0, 4000])
 
 # SET BAR COLORS AND STYLES
 
-bars = plt.bar(x, y, color=(0.2, 0.4, 0.6, 0.05))
+bars = plt.bar(x, y, color=(0.2, 0.4, 0.6, 0.1))
 # print(len(bars))
 plt.grid(True)
 contest = dict()
 
 # READ THE NECESSARY DETAILS FROM JSONDATA TO PLOT THE GRAPH
+
 
 def readelements():
     i = 0
@@ -78,7 +81,6 @@ def readelements():
         contests[(x, y)] = {'contest': contest['contestName'], 'rank': contest['rank'],
                             'change': contest['newRating']-contest['oldRating'], 'Rating': contest['newRating']}
         i = i+1
-
 
         # contests['contest'].append(contest['contestName'])
         # contests['rank'].append(contest['rank'])
@@ -95,7 +97,7 @@ ax.set_xticklabels([])
 # SET ANNOTATION STYLES
 
 annot = ax.annotate("", xy=(0, 0), xytext=(-20, 20), textcoords="offset points",
-                    bbox=dict(boxstyle="round", fc=(1, 1, 0), ec="r", lw=2),
+                    bbox=dict(boxstyle="round", fc=(1, 1, 0), ec="r", lw=2, alpha=1),
                     arrowprops=dict(arrowstyle="-|>"))
 annot.set_visible(False)
 
@@ -115,6 +117,7 @@ ax.axhspan(3000, 4000, facecolor='red', alpha=1)
 
 # SET ANNOTATION DETAILS
 
+
 def update_annot(bar):
     x = bar.get_x()+bar.get_width()/2.
     y = bar.get_y()+bar.get_height()
@@ -129,6 +132,7 @@ def update_annot(bar):
     annot.get_bbox_patch().set_alpha(0.4)
 
 # FUNCTION TO DETECT EVENTS AND ACCORDINGLY DISPLAY THE REQUIRED ANNOTATION
+
 
 def hover(event):
     vis = annot.get_visible()
