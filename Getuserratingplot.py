@@ -6,8 +6,13 @@ import urllib.error
 import matplotlib.pyplot as plt
 import math
 import numpy as np
+import seaborn as sns
 import warnings
 
+sns.set_theme()
+# sns.set_style('white')
+sns.set_style('ticks')
+sns.set_style('darkgrid')
 warnings. filterwarnings('ignore')
 username = input("Enter the handle of the user: ")
 if(len(username) < 1):
@@ -31,14 +36,14 @@ if jsondata['status'] == 'OK':
     # CHECK IF THE DATA RECEIVED HAS 'OK' STATUS, IF NOT EXIT THE PROGRAM.
 
     print("Recieved handles successfully.")
-    json_formatted_str = json.dumps(jsondata, indent=2)
+    # json_formatted_str = json.dumps(jsondata, indent=2)
     # print(json_formatted_str)
 else:
     print("Handle not recieved.\nPlease check the handle name.")
     exit()
 
 
-contests = {}
+contests = dict()
 y = list()
 x = list()
 xax = list()
@@ -48,7 +53,7 @@ for contest in jsondata['result']:
     y.append(contest['newRating'])
     x.append(math.floor((contest['ratingUpdateTimeSeconds'] -
                          jsondata['result'][0]['ratingUpdateTimeSeconds'])/86400))
-    xax.append(str(contest['contestId']))
+    # xax.append(str(contest['contestId']))
 # print(len(x))
 # print(len(y))
 
@@ -60,10 +65,11 @@ plt.title(username+" - Rating plot")
 plt.plot(x, y, color="black", linewidth="2",
          markerfacecolor='white', markersize="7", marker="o")
 plt.ylim([0, 4000])
+plt.xlim([10, x[-2]])
 
 # SET BAR COLORS AND STYLES
 
-bars = plt.bar(x, y, color=(0.2, 0.4, 0.6, 0.1))
+bars = plt.bar(x, y, color=(0.2, 0.4, 0.6, 0))
 # print(len(bars))
 plt.grid(True)
 contest = dict()
@@ -97,7 +103,7 @@ ax.set_xticklabels([])
 # SET ANNOTATION STYLES
 
 annot = ax.annotate("", xy=(0, 0), xytext=(-20, 20), textcoords="offset points",
-                    bbox=dict(boxstyle="round", fc=(1, 1, 0), ec="r", lw=2, alpha=1),
+                    bbox=dict(boxstyle="round", fc=(1, 1, 0), ec="r", lw=2),
                     arrowprops=dict(arrowstyle="-|>"))
 annot.set_visible(False)
 
