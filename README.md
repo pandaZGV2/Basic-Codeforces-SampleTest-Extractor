@@ -12,3 +12,7 @@ $ ./RCPP.sh 1469A.cpp
 * BeautifulSoup
 * lxml
 * numpy
+* seaborn
+
+## Rating Plotter for Codeforces
+Run the program `Getuserratingplot.py` and enter the username of the person whose rating you want to plot. It uses the codeforces API to receive rating history in `JSON` format. The program then parses the data and plots it accordingly.
