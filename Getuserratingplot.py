@@ -22,10 +22,11 @@ try:
     jsondata = json.loads(data)
 except:
     print("Unable to read")
+    exit()
 if jsondata['status'] == 'OK':
     print("Recieved handles successfully.")
     json_formatted_str = json.dumps(jsondata, indent=2)
-    # print(json_formatted_str)
+    print(json_formatted_str)
 else:
     print("Handle not recieved.\nPlease check the handle name.")
     exit()
@@ -39,14 +40,15 @@ for contest in jsondata['result']:
     y.append(contest['newRating'])
     x.append(math.floor((contest['ratingUpdateTimeSeconds'] -
                          jsondata['result'][0]['ratingUpdateTimeSeconds'])/86400))
-    xax.append(contest['contestName'])
+    xax.append(str(contest['contestId']))
 print(len(x))
 print(len(y))
 
 
 #
 fig = plt.figure()
-plt.plot(x, y, 'c-o', markerfacecolor='r')
+plt.title(username+" - Rating plot")
+plt.plot(x, y, 'c-o', markerfacecolor='r',markersize="10")
 # plt.xlim([-3, x[-1]])
 
 bars = plt.bar(x, y, color=(0.2, 0.4, 0.6, 0.1))
@@ -73,11 +75,12 @@ readelements()
 yax = [1200, 1400, 1600, 1900, 2100, 2300, 2400, 2600, 3000, 4000]
 
 ax = plt.subplot()
-ax.set_xticklabels([])
+# plt.grid(color='#cccccc')
+# ax.set_xticklabels(xax, rotation='20')
 
 annot = ax.annotate("", xy=(0, 0), xytext=(-20, 20), textcoords="offset points",
                     bbox=dict(boxstyle="round", fc="red", ec="b", lw=2),
-                    arrowprops=dict(arrowstyle="->"))
+                    arrowprops=dict(arrowstyle="-|>"))
 annot.set_visible(False)
 
 
