@@ -12,7 +12,7 @@ import warnings
 sns.set_theme()
 # sns.set_style('white')
 sns.set_style('ticks')
-sns.set_style('darkgrid')
+sns.set_style('dark')
 warnings. filterwarnings('ignore')
 username = input("Enter the handle of the user: ")
 if(len(username) < 1):
@@ -65,7 +65,7 @@ plt.title(username+" - Rating plot")
 plt.plot(x, y, color="black", linewidth="2",
          markerfacecolor='white', markersize="7", marker="o")
 plt.ylim([0, 4000])
-plt.xlim([10, x[-2]])
+# plt.xlim([10, x[-2]])
 
 # SET BAR COLORS AND STYLES
 
