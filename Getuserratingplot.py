@@ -1,8 +1,6 @@
 import sys
 import json
-import urllib.request
-import urllib.parse
-import urllib.error
+import urllib.request, urllib.parse, urllib.error
 import matplotlib.pyplot as plt
 import math
 import numpy as np
